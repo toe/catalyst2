@@ -253,12 +253,6 @@ h5,
 h6 {
   font-weight: bold;
 }
-a, a:active, a:visited {
-  color: #607890;
-}
-a:hover {
-  color: #036;
-}
 /**
  * Primary styles
  *
@@ -379,6 +373,7 @@ a:hover {
 header {
   width: 100%;
   height: 65px;
+  min-width: 1200px;
 }
 header ul {
   list-style: none;
