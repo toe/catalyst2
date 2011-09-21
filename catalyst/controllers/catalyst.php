@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Catalyst extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,8 +19,29 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('index');
-	}
+		if(!$this->isInstalled()){
+			redirect('install');
+		}else{
+			redirect('login');
+		}
+	} // end public function index
+	
+	/**
+	*	isInstalled will let the user know if catalyst is installed or not. 
+	* To check to see if Catalyst has been installed look at the database
+	* config file and see if it has been setup.
+	* 
+	*	@params - none
+	*
+	* @return - true or false
+	*/
+	private function isInstalled(){
+		$content = read_file('config/database.php');
+		
+		$iPos = strpos($content, '{HOSTNAME}');
+		return ($iPos) ? false : true ;		
+	} // end private function isInstalled()
+	
 }
 
 /* End of file welcome.php */
